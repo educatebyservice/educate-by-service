@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educate by Service - Lifetime Learning is one click away</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #f97316;
+            --light: #f8fafc;
+            --dark: #0f172a;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .animate-slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .btn-primary:hover {
+            background-color: #153e75;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-secondary {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card {
+            border-radius: 0.75rem;
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .logo {
+            width: 180px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .mobile-menu-items {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 1rem;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                z-index: 50;
+                display: none;
+            }
+            
+            .mobile-menu-items.active {
+                display: block;
+            }
+            
+            .mobile-menu-items a {
+                display: block;
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #e5e7eb;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <div class="logo-icon">E</div>
+                    <span>Educate by Service</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-menu">
+                    <ul class="flex space-x-8">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#services" class="nav-link">Services</a></li>
+                        <li><a href="#resources" class="nav-link">Resources</a></li>
+                        <li><a href="#about" class="nav-link">About Us</a></li>
+                        <li><a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <div class="mobile-menu">
+                    <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Mobile Menu Items -->
+                    <div id="mobile-menu-items" class="mobile-menu-items">
+                        <a href="#home" class="block">Home</a>
+                        <a href="#services" class="block">Services</a>
+                        <a href="#resources" class="block">Resources</a>
+                        <a href="#about" class="block">About Us</a>
+                        <a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="block">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-50 to-blue-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-in-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+                        Lifetime Learning <span class="text-blue-700">service</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-6">
+                        Access high-quality educational resources across various domains and transform your career with our expert guidance.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="btn-primary text-center">
+                            Explore Services
+                        </a>
+                        <a href="#resources" class="btn-secondary text-center">
+                            Get Exclusive Resources
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-slide-in-right">
+                    <div class="relative">
+                        <div class="bg-blue-500 bg-opacity-10 rounded-lg p-6 relative z-10">
+                            <div class="bg-white rounded-lg shadow-xl p-6 md:p-10">
+                                <h3 class="text-2xl font-bold mb-4 text-center text-blue-700">Why Choose Us?</h3>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>Lifetime access to educational materials</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>Professional career guidance and mentorship</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>Resume building and professional profile optimization</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>Internship opportunities and project guidance</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span>All this for just one dollar - forever!</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Our Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide comprehensive services to help you succeed in your educational and professional journey.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Career Development -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Career Development</h3>
+                    <p class="text-gray-600 mb-4">
+                        Personalized career coaching, industry insights, and strategic planning to help you achieve your professional goals.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Career path planning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Mock interviews</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Skill development guidance</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resume Building -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Resume Building</h3>
+                    <p class="text-gray-600 mb-4">
+                        Expert resume crafting services to highlight your skills and experience, making you stand out to potential employers.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>ATS-optimized resumes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Cover letter creation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Professional portfolio development</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- LinkedIn & GitHub Maintenance -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="service-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">LinkedIn & GitHub Optimization</h3>
+                    <p class="text-gray-600 mb-4">
+                        Maximize your online professional presence with optimized profiles that attract recruiters and showcase your expertise.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>SEO-optimized LinkedIn profiles</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>GitHub repository organization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Portfolio website development</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Internships -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Internship Opportunities</h3>
+                    <p class="text-gray-600 mb-4">
+                        Connect with top companies and gain valuable work experience through our extensive network of internship partners.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Internship placement assistance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Application preparation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Internship-to-job conversion support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Project Guidance -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.5s;">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Project Guidance</h3>
+                    <p class="text-gray-600 mb-4">
+                        Get expert mentorship and technical support for your academic and personal projects across various domains.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Project conceptualization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Technical implementation support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Project documentation assistance</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Educational Resources -->
+                <div class="service-card p-6 animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="service-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Educational Resources</h3>
+                    <p class="text-gray-600 mb-4">
+                        Access a vast library of educational materials spanning various domains to enhance your knowledge and skills.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>E-books and study materials</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Video tutorials and webinars</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Practice exercises and assessments</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Exclusive Resources</h2>
+                <p class="text-xl max-w-3xl mx-auto">
+                    Unlock lifetime access to premium educational materials across various domains for just you.
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-in-left">
+                    <div class="bg-white bg-opacity-10 rounded-lg p-8 backdrop-filter backdrop-blur-sm">
+                        <h3 class="text-2xl font-bold mb-6 text-center">What You'll Get</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-yellow-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-lg">Over 5,000+ study resources across various subjects</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-yellow-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-lg">500+ hours of video tutorials and lectures</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-yellow-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-lg">200+ project templates and case studies</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-yellow-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-lg">Access to industry certifications and preparation materials</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-yellow-300 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-lg">Monthly updated content to keep you current with industry trends</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10 animate-slide-in-right">
+                    <div class="bg-white rounded-lg shadow-xl p-8 text-gray-800 max-w-md mx-auto">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-blue-700">Get Access Now</h3>
+                        <p class="text-gray-600 mb-6 text-center">
+                            Fill out the form below to get instant access to our exclusive resources for just you.
+                        </p>
+                        <a href="https://forms.gle/DK4tby1jSGB3ktks5" target="_blank" class="btn-secondary w-full text-center py-3 mb-4">
+                            Fill Google Form for Access
+                        </a>
+                        <div class="text-center text-gray-600 text-sm">
+                            <p class="mb-2">
+                                <strong></strong>
+                            </p>
+                            <p>No hidden fees. No recurring charges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">What Our Students Say</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Don't just take our word for it. Here's what our students have to say about their experience.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl mr-4">
+                            S
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Sarah Johnson</h4>
+                            <p class="text-gray-600">Software Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The resources and guidance provided by Educate by Service have been instrumental in helping me land my dream job. The career coaching and GitHub optimization services were particularly valuable."
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Michael Chen</h4>
+                            <p class="text-gray-600">Data Scientist</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "I can't believe the value I got for just $1. The project guidance and educational resources have helped me build a strong portfolio that impressed recruiters. Highly recommended!"
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xl mr-4">
+                            A
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Aisha Patel</h4>
+                            <p class="text-gray-600">UX Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The internship placement service helped me secure a position at a top tech company. The resume building and interview preparation were spot on. Thank you, Educate by Service!"
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-in-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">About Educate by Service</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        At Educate by Service, we believe that quality education should be accessible to everyone. Our mission is to democratize learning by providing high-quality educational resources and professional guidance at an affordable price.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Founded in 2022, we've helped thousands of students and professionals worldwide achieve their educational and career goals. Our team consists of industry experts, career coaches, and educational consultants who are passionate about helping others succeed.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        What sets us apart is our commitment to providing lifetime access to our resources for just $1. We believe that financial constraints should never be a barrier to quality education and career advancement.
+                    </p>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10 animate-slide-in-right">
+                    <div class="bg-blue-50 rounded-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-blue-700">Our Values</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-4 flex-shrink-0">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2 text-gray-800">Accessibility</h4>
+                                    <p class="text-gray-600">
+                                        We believe quality education should be accessible to everyone regardless of financial constraints.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-4 flex-shrink-0">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2 text-gray-800">Excellence</h4>
+                                    <p class="text-gray-600">
+                                        We are committed to providing the highest quality resources and guidance to help our students succeed.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-4 flex-shrink-0">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2 text-gray-800">Support</h4>
+                                    <p class="text-gray-600">
+                                        We provide continuous support and guidance to help our students achieve their educational and career goals.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-4 flex-shrink-0">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2 text-gray-800">Innovation</h4>
+                                    <p class="text-gray-600">
+                                        We continuously update our resources and approaches to stay current with industry trends and technologies.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Ready to Transform Your Future?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto animate-fade-in">
+                Join thousands of successful students who have accelerated their careers with our resources and guidance.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-slide-up">
+                <a href="https://educatebyservice.onrender.com/" class="btn-secondary text-center">
+                    Explore Our Services
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+     
+                       
+                          
+                            
+                           
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 mr-4 flex-shrink-0">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="logo-icon bg-white text-blue-700">E</div>
+                        <span class="text-xl font-bold ml-2">Educate by Service</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Providing high-quality educational resources and professional guidance at an affordable price.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/educatebyservice?igsh=ZXFidWNkcG4yOHJz" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-all">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-all">Services</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white transition-all">Resources</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-all">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-all">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Career Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Resume Building</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">LinkedIn & GitHub Optimization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Internship Opportunities</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all">Project Guidance</a></li>
+                    </ul>
+                </div>
+                
+              
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">
+                        &copy; 2023 Educate by Service. All Rights Reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu-items').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu-items').classList.remove('active');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in, .animate-slide-in-left, .animate-slide-in-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    // Add a small delay based on the element's position
+                    const delay = element.hasAttribute('style') && element.getAttribute('style').includes('animation-delay') 
+                        ? element.style.animationDelay 
+                        : '0s';
+                    
+                    // Keep any existing delay attribute
+                    element.style.visibility = 'visible';
+                    if (!element.style.animationDelay) {
+                        element.style.animationDelay = delay;
+                    }
+                } else {
+                    element.style.visibility = 'hidden';
+                }
+            });
+        }
+        
+        // Initial call and add scroll event listener
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
